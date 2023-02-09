@@ -1,5 +1,5 @@
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    price INTEGER DEFAULT 0.00,
+    price INTEGER DEFAULT 0.00
 );

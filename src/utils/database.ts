@@ -10,7 +10,6 @@ const {
 } = process.env
 
 let pool
-console.log(NODE_ENV)
 
 if (NODE_ENV === 'test') {
   pool = new Pool({
