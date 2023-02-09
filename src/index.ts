@@ -1,5 +1,6 @@
 import express from 'express' // Import express
 import bodyParser from 'body-parser' // Import body-parser
+import cors from 'cors' // Import cors
 import dotenv from 'dotenv' // Import dotenv
 import apiRouter from './routes' // Import routes
 
@@ -7,6 +8,8 @@ const app: express.Application = express() // Create a new express app instance
 dotenv.config() // Load environment variables from .env file
 const port = process.env.PORT || 3000 // The port the express app will listen on
 app.use(bodyParser.json()) // Parse JSON bodies
+app.use(bodyParser.urlencoded({ extended: true })) // Parse URL-encoded bodies
+app.use(cors()) // Enable All CORS Requests
 
 // Use the apiRouter
 app.use('/api', apiRouter)
