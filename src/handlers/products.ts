@@ -3,8 +3,8 @@ import { ProductStore } from '../models/product'
 
 const store = new ProductStore()
 
-// This is the controller for the products route
-export default class ProductsController {
+// This is the handler for the products route
+export default class ProductsHandler {
   // Get all products
   async getProducts(_req: express.Request, res: express.Response) {
     try {
