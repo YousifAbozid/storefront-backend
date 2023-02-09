@@ -38,7 +38,7 @@ export class UserStore {
   }
 
   // Create a new user
-  async createUser(u: User): Promise<User> {
+  async create(u: User): Promise<User> {
     try {
       // @ts-ignore
       const conn = await pool.connect()
@@ -57,7 +57,7 @@ export class UserStore {
   }
 
   // Update a user
-  async updateUser(u: User): Promise<User> {
+  async update(u: User): Promise<User> {
     try {
       // @ts-ignore
       const conn = await pool.connect()
@@ -76,7 +76,7 @@ export class UserStore {
   }
 
   // Delete a user
-  async deleteUser(id: number): Promise<User> {
+  async delete(id: number): Promise<User> {
     try {
       // @ts-ignore
       const conn = await pool.connect()
