@@ -39,119 +39,116 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductStore = void 0;
+exports.OrderStore = void 0;
 // @ts-ignore
 var database_1 = __importDefault(require("../utils/database"));
-var ProductStore = /** @class */ (function () {
-    function ProductStore() {
+var OrderStore = /** @class */ (function () {
+    function OrderStore() {
     }
-    // Get all products
-    ProductStore.prototype.index = function () {
+    // Get all orders
+    OrderStore.prototype.index = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, error_1;
+            var connection, sql, result, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         return [4 /*yield*/, database_1.default.connect()];
                     case 1:
-                        conn = _a.sent();
-                        sql = 'SELECT * FROM products';
-                        return [4 /*yield*/, conn.query(sql)];
+                        connection = _a.sent();
+                        sql = 'SELECT * FROM orders';
+                        return [4 /*yield*/, connection.query(sql)];
                     case 2:
                         result = _a.sent();
-                        conn.release();
+                        connection.release();
                         return [2 /*return*/, result.rows];
                     case 3:
-                        error_1 = _a.sent();
-                        throw new Error("Could not get products. Error: ".concat(error_1));
+                        err_1 = _a.sent();
+                        throw new Error("Could not get orders. Error: ".concat(err_1));
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    // Get a product by id
-    ProductStore.prototype.show = function (id) {
+    // Get order by id
+    OrderStore.prototype.show = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, error_2;
+            var sql, connection, result, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
+                        sql = 'SELECT * FROM orders WHERE id=($1)';
                         return [4 /*yield*/, database_1.default.connect()];
                     case 1:
-                        conn = _a.sent();
-                        sql = 'SELECT * FROM products WHERE id=($1)';
-                        return [4 /*yield*/, conn.query(sql, [id])];
+                        connection = _a.sent();
+                        return [4 /*yield*/, connection.query(sql, [id])];
                     case 2:
                         result = _a.sent();
-                        conn.release();
-                        if (result.rows.length === 0) {
-                            throw new Error("Could not find product ".concat(id));
-                        }
+                        connection.release();
                         return [2 /*return*/, result.rows[0]];
                     case 3:
-                        error_2 = _a.sent();
-                        throw new Error("Could not find product ".concat(id, ". Error: ").concat(error_2));
+                        err_2 = _a.sent();
+                        throw new Error("Could not find product ".concat(id, ". Error: ").concat(err_2));
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    // Create a new product
-    ProductStore.prototype.create = function (p) {
+    // Create new order
+    OrderStore.prototype.create = function (o) {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, error_3;
+            var sql, connection, result, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
+                        sql = 'INSERT INTO orders (user_id, status) VALUES($1, $2) RETURNING *';
                         return [4 /*yield*/, database_1.default.connect()];
                     case 1:
-                        conn = _a.sent();
-                        sql = 'INSERT INTO products (name, price) VALUES ($1, $2) RETURNING *';
-                        return [4 /*yield*/, conn.query(sql, [p.name, p.price])];
+                        connection = _a.sent();
+                        return [4 /*yield*/, connection.query(sql, [o.user_id, o.status])];
                     case 2:
                         result = _a.sent();
-                        conn.release();
+                        connection.release();
                         return [2 /*return*/, result.rows[0]];
                     case 3:
-                        error_3 = _a.sent();
-                        throw new Error("Could not add new product ".concat(p.name, ". Error: ").concat(error_3));
+                        err_3 = _a.sent();
+                        throw new Error("Could not add new order. Error: ".concat(err_3));
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    // Update a product
-    ProductStore.prototype.update = function (p) {
+    // Update order
+    OrderStore.prototype.update = function (o) {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, error_4;
+            var sql, connection, result, err_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
+                        sql = "UPDATE orders SET user_id = $2, status = $3 WHERE id = $1 RETURNING *";
                         return [4 /*yield*/, database_1.default.connect()];
                     case 1:
-                        conn = _a.sent();
-                        sql = 'UPDATE products SET name=($1), price=($2) WHERE id=($3)';
-                        return [4 /*yield*/, conn.query(sql, [p.name, p.price, p.id])];
+                        connection = _a.sent();
+                        return [4 /*yield*/, connection.query(sql, [o.id, o.user_id, o.status])];
                     case 2:
                         result = _a.sent();
-                        conn.release();
+                        connection.release();
                         return [2 /*return*/, result.rows[0]];
                     case 3:
-                        error_4 = _a.sent();
-                        throw new Error("Could not update product ".concat(p.name, ". Error: ").concat(error_4));
+                        err_4 = _a.sent();
+                        throw new Error("Could not update order ".concat(o.id, ". Error: ").concat(err_4));
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    // Delete a product
-    ProductStore.prototype.delete = function (id) {
+    // Delete order
+    OrderStore.prototype.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, error_5;
+            var conn, sql, result, err_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -166,13 +163,67 @@ var ProductStore = /** @class */ (function () {
                         conn.release();
                         return [2 /*return*/, result.rows[0]];
                     case 3:
-                        error_5 = _a.sent();
-                        throw new Error("Could not delete product ".concat(id, ". Error: ").concat(error_5));
+                        err_5 = _a.sent();
+                        throw new Error("Could not delete order ".concat(id, ". Error: ").concat(err_5));
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    return ProductStore;
+    // Get all orders for a user
+    OrderStore.prototype.getCurrentOrders = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var conn, sql, result, err_6;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, database_1.default.connect()];
+                    case 1:
+                        conn = _a.sent();
+                        sql = "SELECT *\n                         FROM orders\n                         WHERE user_id = ($1);";
+                        return [4 /*yield*/, conn.query(sql, [id])];
+                    case 2:
+                        result = _a.sent();
+                        conn.release();
+                        return [2 /*return*/, result.rows];
+                    case 3:
+                        err_6 = _a.sent();
+                        throw new Error("Could not get orders for user ".concat(id, ". Error: ").concat(err_6));
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    // Add product to order
+    OrderStore.prototype.addProductToOrder = function (p) {
+        return __awaiter(this, void 0, void 0, function () {
+            var sql, connection, result, err_7;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        sql = 'INSERT INTO order_products (order_id, product_id, quantity) VALUES($1, $2, $3) RETURNING *';
+                        return [4 /*yield*/, database_1.default.connect()];
+                    case 1:
+                        connection = _a.sent();
+                        return [4 /*yield*/, connection.query(sql, [
+                                p.order_id,
+                                p.product_id,
+                                p.quantity,
+                            ])];
+                    case 2:
+                        result = _a.sent();
+                        connection.release();
+                        return [2 /*return*/, result.rows[0]];
+                    case 3:
+                        err_7 = _a.sent();
+                        throw new Error("Could not add product. Error: ".concat(err_7));
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    return OrderStore;
 }());
-exports.ProductStore = ProductStore;
+exports.OrderStore = OrderStore;

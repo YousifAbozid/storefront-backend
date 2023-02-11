@@ -57,7 +57,7 @@ var ProductsHandler = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         error_1 = _a.sent();
-                        res.status(404).json({ error: 'Could not get products' });
+                        res.status(404).json({ error: "Could not get products. ".concat(error_1) });
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
@@ -79,7 +79,7 @@ var ProductsHandler = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         error_2 = _a.sent();
-                        res.status(404).json({ error: 'Could not get product' });
+                        res.status(404).json({ error: "Could not get product. ".concat(error_2) });
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
@@ -158,7 +158,7 @@ var ProductsHandler = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         error_5 = _a.sent();
-                        res.status(500).json(error_5);
+                        res.status(500).json({ error: "Could not delete product. ".concat(error_5) });
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
