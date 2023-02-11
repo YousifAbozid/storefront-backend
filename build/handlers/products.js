@@ -107,7 +107,7 @@ var ProductsHandler = /** @class */ (function () {
                         return [3 /*break*/, 3];
                     case 2:
                         error_3 = _a.sent();
-                        res.status(500).json(error_3);
+                        res.status(500).json({ error: "Could not create product. ".concat(error_3) });
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }

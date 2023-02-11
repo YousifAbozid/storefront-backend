@@ -11,7 +11,7 @@ export default class ProductsHandler {
       const products = await store.index()
       res.json(products)
     } catch (error) {
-      res.status(404).json({ error: 'Could not get products' })
+      res.status(404).json({ error: `Could not get products. ${error}` })
     }
   }
 
@@ -21,7 +21,7 @@ export default class ProductsHandler {
       const product = await store.show(parseInt(req.params.id))
       res.json(product)
     } catch (error) {
-      res.status(404).json({ error: 'Could not get product' })
+      res.status(404).json({ error: `Could not get product. ${error}` })
     }
   }
 
@@ -37,7 +37,7 @@ export default class ProductsHandler {
       })
       res.status(201).json(product)
     } catch (error) {
-      res.status(500).json(error)
+      res.status(500).json({ error: `Could not create product. ${error}` })
     }
   }
 
@@ -64,7 +64,7 @@ export default class ProductsHandler {
       await store.delete(parseInt(req.params.id as string))
       res.json({ message: 'Product deleted successfully' })
     } catch (error) {
-      res.status(500).json(error)
+      res.status(500).json({ error: `Could not delete product. ${error}` })
     }
   }
 }

@@ -30,6 +30,9 @@ export class ProductStore {
       const sql = 'SELECT * FROM products WHERE id=($1)'
       const result = await conn.query(sql, [id])
       conn.release()
+      if (result.rows.length === 0) {
+        throw new Error(`Could not find product ${id}`)
+      }
       return result.rows[0]
     } catch (error) {
       throw new Error(`Could not find product ${id}. Error: ${error}`)
@@ -42,7 +45,7 @@ export class ProductStore {
       // @ts-ignore
       const conn = await pool.connect()
       const sql =
-        'INSERT INTO products (name, price, category, url, description) VALUES($1, $2, $3, $4, $5) RETURNING *'
+        'INSERT INTO products (name, price) VALUES ($1, $2) RETURNING *'
       const result = await conn.query(sql, [p.name, p.price])
       conn.release()
       return result.rows[0]
