@@ -1,5 +1,6 @@
 import express from 'express'
 import ProductsHandler from '../handlers/products'
+import auth from '../utils/auth'
 
 const productsRouter = express.Router()
 const handler = new ProductsHandler()
@@ -17,6 +18,6 @@ productsRouter.post('/', handler.createProduct)
 productsRouter.put('/:id', handler.updateProduct)
 
 // Delete a product
-productsRouter.delete('/:id', handler.deleteProduct)
+productsRouter.delete('/:id', auth, handler.deleteProduct)
 
 export default productsRouter

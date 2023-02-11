@@ -3,7 +3,8 @@ import { OrderStore } from '../models/order'
 
 const store = new OrderStore()
 
-export default class OrdersController {
+// This is the handler class
+export default class OrdersHandler {
   // Get all orders
   async getOrders(_req: express.Request, res: express.Response) {
     try {

@@ -1,5 +1,6 @@
 import express from 'express'
 import UsersHandler from '../handlers/users'
+import auth from '../utils/auth'
 
 const usersRouter = express.Router()
 const usersHandler = new UsersHandler()
@@ -14,9 +15,9 @@ usersRouter.get('/:id', usersHandler.getUserById)
 usersRouter.post('/', usersHandler.createUser)
 
 // Update a user
-usersRouter.put('/:id', usersHandler.updateUser)
+usersRouter.put('/:id', auth, usersHandler.updateUser)
 
 // Delete a user
-usersRouter.delete('/:id', usersHandler.deleteUser)
+usersRouter.delete('/:id', auth, usersHandler.deleteUser)
 
 export default usersRouter
