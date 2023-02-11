@@ -16,7 +16,7 @@ export type ProductToOrder = {
 
 export class OrderStore {
   // Get all orders
-  async getOrders(): Promise<Order[]> {
+  async index(): Promise<Order[]> {
     try {
       // @ts-ignore
       const connection = await pool.connect()
@@ -32,7 +32,7 @@ export class OrderStore {
   }
 
   // Get order by id
-  async getOrderById(id: number): Promise<Order> {
+  async show(id: number): Promise<Order> {
     try {
       const sql = 'SELECT * FROM orders WHERE id=($1)'
       // @ts-ignore
@@ -48,7 +48,7 @@ export class OrderStore {
   }
 
   // Create new order
-  async createOrder(o: Order): Promise<Order> {
+  async create(o: Order): Promise<Order> {
     try {
       const sql =
         'INSERT INTO orders (user_id, status) VALUES($1, $2) RETURNING *'
@@ -65,7 +65,7 @@ export class OrderStore {
   }
 
   // Update order
-  async updateOrder(o: Order): Promise<Order> {
+  async update(o: Order): Promise<Order> {
     try {
       const sql = `UPDATE orders SET user_id = $2, status = $3 WHERE id = $1 RETURNING *`
       // @ts-ignore
@@ -81,7 +81,7 @@ export class OrderStore {
   }
 
   // Delete order
-  async deleteOrder(id: number): Promise<Order> {
+  async delete(id: number): Promise<Order> {
     try {
       // @ts-ignore
       const conn = await pool.connect()
