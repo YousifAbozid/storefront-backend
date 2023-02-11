@@ -6,15 +6,15 @@
   "scripts": {
     "start": "node build/index.js",
     "dev": "nodemon src/index.ts",
-    "build": "npx tsc",
-    "jasmine": "NODE_ENV=test jasmine",
+    "build": "rm -rf build && npx tsc",
+    "jasmine": "jasmine",
     "create-dev-db": "db-migrate db:create storefront_backend",
     "create-test-db": "db-migrate db:create storefront_backend_test",
     "migrate-up-dev": "db-migrate up -e dev",
     "migrate-up-test": "db-migrate up -e test",
     "reset-dev-db": "db-migrate reset -e dev",
     "reset-test-db": "db-migrate reset -e test",
-    "test": "npm run migrate-up-test && npm run build && npm run jasmine && npm run reset-test-db"
+    "test": "npm run migrate-up-test && npm run build && npm run jasmine NODE_ENV=test && npm run reset-test-db"
   },
   "author": "Yousif Abozid",
   "license": "ISC",
