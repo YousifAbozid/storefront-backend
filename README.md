@@ -8,15 +8,18 @@ To get started, clone this repo and run `npm install` in your terminal.
 
 ## Setting up the Database
 
-To set up the database, run `npm run create-dev-db` in your terminal.
+To set up the database, run `npm run create-dev-db` in your terminal, This command runs a script that uses db-migrate to create a new database called `storefront-backend` and then run `npm run migrate-up-dev` in your terminal to let the migrations create the tables in your database.
 
-## Seeding the Database
-
-To seed the database, run `npm run migrate-up-dev` in your terminal.
+PS: This script assumes you have installed `postgres` on your local machine and the server is running.
 
 ## Running the Server
 
-To run the server, run `npm run dev` in your terminal.
+To run the server in dev mode, run `npm run dev` in your terminal.
+To run the server in prod mode, run `npm start` in your terminal.
+
+### Ports
+
+The application runs on port `3000` with database on `5432`.
 
 ## Running in Production
 
