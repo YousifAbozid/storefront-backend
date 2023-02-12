@@ -6,10 +6,10 @@ const usersRouter = express.Router()
 const usersHandler = new UsersHandler()
 
 // Get all users
-usersRouter.get('/', usersHandler.getUsers)
+usersRouter.get('/', auth, usersHandler.getUsers)
 
 // Get a user by id
-usersRouter.get('/:id', usersHandler.getUserById)
+usersRouter.get('/:id', auth, usersHandler.getUserById)
 
 // Create a user
 usersRouter.post('/', usersHandler.createUser)

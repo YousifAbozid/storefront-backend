@@ -12,10 +12,10 @@ productsRouter.get('/', handler.getProducts)
 productsRouter.get('/:id', handler.getProductsById)
 
 // Create a product
-productsRouter.post('/', handler.createProduct)
+productsRouter.post('/', auth, handler.createProduct)
 
 // Update a product
-productsRouter.put('/:id', handler.updateProduct)
+productsRouter.put('/:id', auth, handler.updateProduct)
 
 // Delete a product
 productsRouter.delete('/:id', auth, handler.deleteProduct)
