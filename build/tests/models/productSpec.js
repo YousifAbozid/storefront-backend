@@ -58,43 +58,73 @@ describe('Product Model', function () {
             }
         });
     }); });
-    //
-    //   it('should return a list of products', async () => {
-    //     const result = await store.index()
-    //     expect(result).toEqual([
-    //       {
-    //         id: 1,
-    //         name: 'Test product',
-    //         price: 20.0,
-    //       },
-    //     ])
-    //   })
-    //
-    //   it('should return the correct product', async () => {
-    //     const result = await store.show(1)
-    //     expect(result).toEqual({
-    //       id: 1,
-    //       name: 'Test product',
-    //       price: 20.0,
-    //     })
-    //   })
-    //
-    //   it('should update a product', async () => {
-    //     const result = await store.update({
-    //       id: 1,
-    //       name: 'Test product 2',
-    //       price: 30.0,
-    //     })
-    //     expect(result).toEqual({
-    //       id: 1,
-    //       name: 'Test product 2',
-    //       price: 30.0,
-    //     })
-    //   })
-    //
-    //   it('should delete the product', async () => {
-    //     await store.delete(1)
-    //     const result = await store.index()
-    //     expect(result).toEqual([])
-    //   })
+    it('should update a product', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var result;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, store.update({
+                        id: 1,
+                        name: 'Test product',
+                        price: 30.0,
+                    })];
+                case 1:
+                    result = _a.sent();
+                    expect(result).toEqual({
+                        id: 1,
+                        name: 'Test product',
+                        price: 30.0,
+                    });
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('should return a list of products', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var result;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, store.index()];
+                case 1:
+                    result = _a.sent();
+                    expect(result).toEqual([
+                        {
+                            id: 1,
+                            name: 'Test product',
+                            price: 30.0,
+                        },
+                    ]);
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('should return the correct product', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var result;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, store.show(1)];
+                case 1:
+                    result = _a.sent();
+                    expect(result).toEqual({
+                        id: 1,
+                        name: 'Test product',
+                        price: 30.0,
+                    });
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('should delete the product', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var result;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, store.delete(1)];
+                case 1:
+                    _a.sent();
+                    return [4 /*yield*/, store.index()];
+                case 2:
+                    result = _a.sent();
+                    expect(result).toEqual([]);
+                    return [2 /*return*/];
+            }
+        });
+    }); });
 });

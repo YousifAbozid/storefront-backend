@@ -109,12 +109,10 @@ var ProductStore = /** @class */ (function () {
                         return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
-                        console.log('working');
                         sql = 'INSERT INTO products (name, price) VALUES ($1, $2) RETURNING *';
                         return [4 /*yield*/, conn.query(sql, [p.name, p.price])];
                     case 2:
                         result = _a.sent();
-                        console.log('test here');
                         conn.release();
                         return [2 /*return*/, result.rows[0]];
                     case 3:
@@ -136,7 +134,7 @@ var ProductStore = /** @class */ (function () {
                         return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
-                        sql = 'UPDATE products SET name=($1), price=($2) WHERE id=($3)';
+                        sql = 'UPDATE products SET name=($1), price=($2) WHERE id=($3) RETURNING *';
                         return [4 /*yield*/, conn.query(sql, [p.name, p.price, p.id])];
                     case 2:
                         result = _a.sent();

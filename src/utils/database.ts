@@ -8,12 +8,12 @@ const {
   POSTGRES_DB_TEST,
   POSTGRES_USER,
   POSTGRES_PASSWORD,
-  ENV,
+  NODE_ENV,
 } = process.env
 
-//console.log(ENV)
+console.log(NODE_ENV)
 const pool =
-  ENV === 'dev'
+  NODE_ENV === 'dev'
     ? new Pool({
         host: POSTGRES_HOST,
         database: POSTGRES_DB_DEV,
@@ -26,7 +26,5 @@ const pool =
         user: POSTGRES_USER,
         password: POSTGRES_PASSWORD,
       })
-
-//console.log(pool)
 
 export default pool

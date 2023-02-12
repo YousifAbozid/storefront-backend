@@ -59,7 +59,8 @@ export class ProductStore {
     try {
       // @ts-ignore
       const conn = await pool.connect()
-      const sql = 'UPDATE products SET name=($1), price=($2) WHERE id=($3)'
+      const sql =
+        'UPDATE products SET name=($1), price=($2) WHERE id=($3) RETURNING *'
       const result = await conn.query(sql, [p.name, p.price, p.id])
       conn.release()
       return result.rows[0]
