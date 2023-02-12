@@ -3,6 +3,10 @@ import { ProductStore } from '../../models/product'
 const store = new ProductStore()
 
 describe('Product Model', () => {
+  beforeAll(async () => {
+    await store.deleteAll()
+  })
+
   it('should create a product', async () => {
     const result = await store.create({
       name: 'Test product',

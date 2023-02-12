@@ -43,7 +43,7 @@ var orderStore = new order_1.OrderStore();
 var productStore = new product_1.ProductStore();
 var userStore = new user_1.UserStore();
 var productId, userId;
-fdescribe('Order Model', function () {
+describe('Order Model', function () {
     beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
         var product, user;
         return __generator(this, function (_a) {

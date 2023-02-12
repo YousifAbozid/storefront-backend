@@ -173,6 +173,31 @@ var ProductStore = /** @class */ (function () {
             });
         });
     };
+    // Delete all products
+    ProductStore.prototype.deleteAll = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var conn, sql, error_6;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, database_1.default.connect()];
+                    case 1:
+                        conn = _a.sent();
+                        sql = 'DELETE FROM products';
+                        return [4 /*yield*/, conn.query(sql)];
+                    case 2:
+                        _a.sent();
+                        conn.release();
+                        return [2 /*return*/, []];
+                    case 3:
+                        error_6 = _a.sent();
+                        throw new Error("Could not delete all products. Error: ".concat(error_6));
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
     return ProductStore;
 }());
 exports.ProductStore = ProductStore;

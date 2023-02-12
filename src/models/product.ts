@@ -82,4 +82,17 @@ export class ProductStore {
       throw new Error(`Could not delete product ${id}. Error: ${error}`)
     }
   }
+
+  // Delete all products
+  async deleteAll(): Promise<Product[]> {
+    try {
+      const conn = await pool.connect()
+      const sql = 'DELETE FROM products'
+      await conn.query(sql)
+      conn.release()
+      return []
+    } catch (error) {
+      throw new Error(`Could not delete all products. Error: ${error}`)
+    }
+  }
 }

@@ -39,6 +39,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var product_1 = require("../../models/product");
 var store = new product_1.ProductStore();
 describe('Product Model', function () {
+    beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, store.deleteAll()];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    }); });
     it('should create a product', function () { return __awaiter(void 0, void 0, void 0, function () {
         var result;
         return __generator(this, function (_a) {
