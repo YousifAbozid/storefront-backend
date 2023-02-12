@@ -9,7 +9,7 @@ var createToken_1 = require("../../utils/createToken");
 var request = (0, supertest_1.default)(index_1.default);
 var token = (0, createToken_1.createJWTToken)(1, 'Test', 'User');
 describe('Product handlers: ', function () {
-    it('should return a new user after it is created', function () {
+    it('should return a new product after it is created', function () {
         var data = {
             name: 'Test',
             price: 20.0,

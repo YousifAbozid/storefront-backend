@@ -6,7 +6,7 @@ const request = supertest(app)
 const token: string = createJWTToken(1, 'Test', 'User')
 
 describe('Product handlers: ', () => {
-  it('should return a new user after it is created', () => {
+  it('should return a new product after it is created', () => {
     const data = {
       name: 'Test',
       price: 20.0,
