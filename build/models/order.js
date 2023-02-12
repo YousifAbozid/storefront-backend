@@ -156,7 +156,7 @@ var OrderStore = /** @class */ (function () {
                         return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
-                        sql = 'DELETE FROM products WHERE id=($1)';
+                        sql = 'DELETE FROM orders WHERE id=($1)';
                         return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
                         result = _a.sent();
@@ -181,7 +181,7 @@ var OrderStore = /** @class */ (function () {
                         return [4 /*yield*/, database_1.default.connect()];
                     case 1:
                         conn = _a.sent();
-                        sql = "SELECT *\n                         FROM orders\n                         WHERE user_id = ($1);";
+                        sql = "SELECT * FROM orders WHERE user_id = ($1);";
                         return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
                         result = _a.sent();

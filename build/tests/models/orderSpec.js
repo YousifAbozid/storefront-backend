@@ -36,90 +36,131 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var order_1 = require("../../models/order");
 var product_1 = require("../../models/product");
-var store = new product_1.ProductStore();
-describe('Product Model', function () {
-    it('should create a product', function () { return __awaiter(void 0, void 0, void 0, function () {
+var user_1 = require("../../models/user");
+var orderStore = new order_1.OrderStore();
+var productStore = new product_1.ProductStore();
+var userStore = new user_1.UserStore();
+var productId, userId;
+fdescribe('Order Model', function () {
+    beforeAll(function () { return __awaiter(void 0, void 0, void 0, function () {
+        var product, user;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, productStore.create({
+                        name: 'good product',
+                        price: 20.0,
+                    })];
+                case 1:
+                    product = _a.sent();
+                    productId = product.id;
+                    return [4 /*yield*/, userStore.create({
+                            first_name: 'yousif',
+                            last_name: 'abozid',
+                            password: 'password',
+                        })];
+                case 2:
+                    user = _a.sent();
+                    userId = user.id;
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    afterAll(function () { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, productStore.delete(productId)];
+                case 1:
+                    _a.sent();
+                    return [4 /*yield*/, userStore.delete(userId)];
+                case 2:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('should create an order', function () { return __awaiter(void 0, void 0, void 0, function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.create({
-                        name: 'Test product',
-                        price: 20.0,
+                case 0: return [4 /*yield*/, orderStore.create({
+                        user_id: userId,
+                        status: 'new',
                     })];
                 case 1:
                     result = _a.sent();
                     expect(result).toEqual({
                         id: 1,
-                        name: 'Test product',
-                        price: 20.0,
+                        user_id: userId,
+                        status: 'new',
                     });
                     return [2 /*return*/];
             }
         });
     }); });
-    it('should update a product', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('should return a list of orders', function () { return __awaiter(void 0, void 0, void 0, function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.update({
-                        id: 1,
-                        name: 'Test product',
-                        price: 30.0,
-                    })];
-                case 1:
-                    result = _a.sent();
-                    expect(result).toEqual({
-                        id: 1,
-                        name: 'Test product',
-                        price: 30.0,
-                    });
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-    it('should return a list of products', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var result;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, store.index()];
+                case 0: return [4 /*yield*/, orderStore.index()];
                 case 1:
                     result = _a.sent();
                     expect(result).toEqual([
                         {
                             id: 1,
-                            name: 'Test product',
-                            price: 30.0,
+                            user_id: userId,
+                            status: 'new',
                         },
                     ]);
                     return [2 /*return*/];
             }
         });
     }); });
-    it('should return the correct product', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('should return the correct order', function () { return __awaiter(void 0, void 0, void 0, function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.show(1)];
+                case 0: return [4 /*yield*/, orderStore.show(1)];
                 case 1:
                     result = _a.sent();
                     expect(result).toEqual({
                         id: 1,
-                        name: 'Test product',
-                        price: 30.0,
+                        user_id: userId,
+                        status: 'new',
                     });
                     return [2 /*return*/];
             }
         });
     }); });
-    it('should delete the product', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('should update order status', function () { return __awaiter(void 0, void 0, void 0, function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, store.delete(1)];
+                case 0: return [4 /*yield*/, orderStore.update({
+                        id: 1,
+                        user_id: userId,
+                        status: 'used',
+                    })];
+                case 1:
+                    result = _a.sent();
+                    expect(result).toEqual({
+                        id: 1,
+                        user_id: userId,
+                        status: 'used',
+                    });
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('should delete the order', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var result;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, orderStore.delete(1)];
                 case 1:
                     _a.sent();
-                    return [4 /*yield*/, store.index()];
+                    return [4 /*yield*/, orderStore.index()];
                 case 2:
                     result = _a.sent();
                     expect(result).toEqual([]);
