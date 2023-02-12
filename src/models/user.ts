@@ -88,4 +88,17 @@ export class UserStore {
       throw new Error(`Could not delete user ${id}. Error: ${err}`)
     }
   }
+
+  // Delete all users
+  async deleteAll(): Promise<User> {
+    try {
+      const conn = await pool.connect()
+      const sql = 'DELETE FROM users'
+      const result = await conn.query(sql)
+      conn.release()
+      return result.rows[0]
+    } catch (error) {
+      throw new Error(`Could not delete all users. Error: ${error}`)
+    }
+  }
 }

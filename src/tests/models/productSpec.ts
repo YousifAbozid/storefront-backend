@@ -13,7 +13,7 @@ describe('Product Model', () => {
       price: 20.0,
     })
     expect(result).toEqual({
-      id: 1,
+      id: 2,
       name: 'Test product',
       price: 20.0,
     })
@@ -21,12 +21,12 @@ describe('Product Model', () => {
 
   it('should update a product', async () => {
     const result = await store.update({
-      id: 1,
+      id: 2,
       name: 'Test product',
       price: 30.0,
     })
     expect(result).toEqual({
-      id: 1,
+      id: 2,
       name: 'Test product',
       price: 30.0,
     })
@@ -36,7 +36,7 @@ describe('Product Model', () => {
     const result = await store.index()
     expect(result).toEqual([
       {
-        id: 1,
+        id: 2,
         name: 'Test product',
         price: 30.0,
       },
@@ -44,16 +44,16 @@ describe('Product Model', () => {
   })
 
   it('should return the correct product', async () => {
-    const result = await store.show(1)
+    const result = await store.show(2)
     expect(result).toEqual({
-      id: 1,
+      id: 2,
       name: 'Test product',
       price: 30.0,
     })
   })
 
   it('should delete the product', async () => {
-    await store.delete(1)
+    await store.delete(2)
     const result = await store.index()
     expect(result).toEqual([])
   })

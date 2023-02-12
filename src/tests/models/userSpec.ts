@@ -3,6 +3,10 @@ import { UserStore } from '../../models/user'
 const store = new UserStore()
 
 describe('User Model', () => {
+  beforeAll(async () => {
+    await store.deleteAll()
+  })
+
   it('should create a user', async () => {
     const result = await store.create({
       first_name: 'yousif',
@@ -14,7 +18,7 @@ describe('User Model', () => {
 
   it('should update a user', async () => {
     const result = await store.update({
-      id: 1,
+      id: 2,
       first_name: 'yousif',
       last_name: 'mohamed',
       password: 'password',
@@ -26,14 +30,14 @@ describe('User Model', () => {
     const result = await store.index()
     expect(result.length).toEqual(1)
   })
-
+  //
   it('should return the correct user', async () => {
-    const result = await store.show(1)
+    const result = await store.show(2)
     expect(result.first_name).toEqual('yousif')
   })
 
   it('should delete the user', async () => {
-    await store.delete(1)
+    await store.delete(2)
     const users = await store.index()
     expect(users.length).toEqual(0)
   })
