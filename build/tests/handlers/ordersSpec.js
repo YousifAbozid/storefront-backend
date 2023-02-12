@@ -26,7 +26,7 @@ describe('Orders handlers: ', function () {
             status: 'new',
         });
     });
-    it('orders/add-product/:id should add a product to an order', function () {
+    it('/orders/add-product/:id should add a product to an order', function () {
         var data = {
             product_id: 1,
             quantity: 10,
@@ -122,7 +122,7 @@ describe('Orders handlers: ', function () {
             status: 'used',
         });
     });
-    it('/orders/user-orders/:id should show orders with status not completed', function () {
+    it('/orders/user-orders/:id should show orders related to a user', function () {
         request
             .get('/api/orders/user-orders/1')
             .set('Authorization', "Bearer ".concat(token))

@@ -24,7 +24,7 @@ describe('Orders handlers: ', () => {
       })
   })
 
-  it('orders/add-product/:id should add a product to an order', () => {
+  it('/orders/add-product/:id should add a product to an order', () => {
     const data = {
       product_id: 1,
       quantity: 10,
@@ -127,7 +127,7 @@ describe('Orders handlers: ', () => {
       })
   })
 
-  it('/orders/user-orders/:id should show orders with status not completed', () => {
+  it('/orders/user-orders/:id should show orders related to a user', () => {
     request
       .get('/api/orders/user-orders/1')
       .set('Authorization', `Bearer ${token}`)
