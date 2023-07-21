@@ -1,6 +1,6 @@
 # Storefront Backend Project
 
-This repo is a backend project for a storefront. It uses Node.js, Express, and postgres.
+This repo is a backend project for a storefront. It uses Nodejs, Expressjs, Typescript and postgresql.
 
 ## Getting Started
 
